@@ -16,6 +16,7 @@ defmodule HelloWeb.Router do
   scope "/", HelloWeb do
     pipe_through :browser # Use the default browser stack
 
+    get "/hello", HelloController, :world
     get "/", PageController, :index
   end
 
