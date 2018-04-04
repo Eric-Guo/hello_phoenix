@@ -10,4 +10,9 @@ defmodule HelloWeb.UserController do
     user = Hello.Repo.get(Hello.User, id)
     render conn, "show.html", user: user
   end
+
+  def new(conn, params) do
+    changeset = Hello.User.changeset(%Hello.User{}, params)
+    render conn, "new.html", changeset: changeset
+  end
 end

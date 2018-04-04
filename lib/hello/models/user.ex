@@ -13,9 +13,9 @@ defmodule Hello.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(user, params \\ :empty) do
     user
-    |> cast(attrs, [:name, :username, :password, :password_hash])
-    |> validate_required([:name, :username, :password, :password_hash])
+    |> cast(params, ~w(name username), [])
+    |> validate_length(:username, min: 1, max: 20)
   end
 end
