@@ -24,6 +24,7 @@ defmodule HelloWeb do
       import Plug.Conn
       import HelloWeb.Gettext
       alias HelloWeb.Router.Helpers, as: Routes
+      alias Hello.User
     end
   end
 
@@ -41,6 +42,7 @@ defmodule HelloWeb do
       import HelloWeb.ErrorHelpers
       import HelloWeb.Gettext
       alias HelloWeb.Router.Helpers, as: Routes
+      alias Hello.User
     end
   end
 
