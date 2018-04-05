@@ -18,9 +18,12 @@ defmodule HelloWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
-    {:ok, user} = Hello.Repo.insert(changeset)
-    conn
-    |> put_flash(:info, "#{user.name} created!")
-    |> redirect(to: Routes.user_path(conn, :index))
+    case Hello.Repo.insert(changeset) do
+      {:ok, user} -> conn
+        |> put_flash(:info, "#{user.name} created!")
+        |> redirect(to: Routes.user_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 end
