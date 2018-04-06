@@ -3,6 +3,6 @@ defmodule HelloWeb.UserControllerTest do
 
   test "GET /users", %{conn: conn} do
     conn = get conn, "/users"
-    assert html_response(conn, 200) =~ "Listing Users"
+    assert html_response(conn, 302) =~ "You are being <a href=\"/\">redirected</a>."
   end
 end
