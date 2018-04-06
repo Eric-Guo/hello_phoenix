@@ -22,6 +22,7 @@ defmodule HelloWeb.UserController do
     case Hello.Repo.insert(changeset) do
       {:ok, user} ->
         conn
+        |> HelloWeb.Auth.login(user)
         |> put_flash(:info, "#{user.name} created!")
         |> redirect(to: Routes.user_path(conn, :index))
       {:error, changeset} ->
