@@ -1,14 +1,10 @@
 defmodule HelloWeb.UserController do
   use HelloWeb, :controller
+  plug :authenticate when action in [:index, :show]
 
   def index(conn, _params) do
-    case authenticate(conn) do
-      %Plug.Conn{halted: true} = conn ->
-        conn
-      conn ->
-        users = Hello.Repo.all(User)
-        render conn, "index.html", users: users
-    end
+    users = Hello.Repo.all(User)
+    render conn, "index.html", users: users
   end
 
   def show(conn, %{"id" => id}) do
@@ -33,7 +29,7 @@ defmodule HelloWeb.UserController do
     end
   end
 
-  defp authenticate(conn) do
+  defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
     else
