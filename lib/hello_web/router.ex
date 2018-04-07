@@ -15,8 +15,9 @@ defmodule HelloWeb.Router do
   end
 
   scope "/", HelloWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser]
 
+    resources "/videos", VideoController
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/hello/:name", HelloController, :world
