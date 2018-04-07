@@ -7,6 +7,7 @@ defmodule Hello.Theater.Video do
     field :description, :string
     field :title, :string
     field :url, :string
+    field :view_count, :integer, default: 0
     field :user_id, :id
 
     timestamps()
