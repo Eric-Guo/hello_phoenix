@@ -2,6 +2,8 @@ defmodule HelloWeb.UserController do
   use HelloWeb, :controller
   plug :authenticate_user when action in [:index, :show]
 
+  plug :scrub_params, "user" when action in [:create]
+
   def index(conn, _params) do
     users = Hello.Repo.all(User)
     render conn, "index.html", users: users

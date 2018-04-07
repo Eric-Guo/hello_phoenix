@@ -4,6 +4,8 @@ defmodule HelloWeb.VideoController do
   alias Hello.Theater
   alias Hello.Theater.Video
 
+  plug :scrub_params, "video" when action in [:create, :update]
+
   def index(conn, _params) do
     videos = Theater.list_videos()
     render(conn, "index.html", videos: videos)
