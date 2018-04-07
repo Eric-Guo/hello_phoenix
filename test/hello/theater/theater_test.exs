@@ -6,7 +6,7 @@ defmodule Hello.TheaterTest do
   describe "videos" do
     alias Hello.Theater.Video
 
-    @valid_attrs %{description: "some description", title: "some title", url: "some url"}
+    @valid_attrs %{description: "ElixirConfEU 2015 Keynote", title: "Phoenix Takes Flight", url: "https://www.youtube.com/watch?v=u21S_vq5CTw"}
     @update_attrs %{description: "some updated description", title: "some updated title", url: "some updated url"}
     @invalid_attrs %{description: nil, title: nil, url: nil}
 
@@ -31,9 +31,9 @@ defmodule Hello.TheaterTest do
 
     test "create_video/1 with valid data creates a video" do
       assert {:ok, %Video{} = video} = Theater.create_video(@valid_attrs)
-      assert video.description == "some description"
-      assert video.title == "some title"
-      assert video.url == "some url"
+      assert video.description == "ElixirConfEU 2015 Keynote"
+      assert video.title == "Phoenix Takes Flight"
+      assert video.url == "https://www.youtube.com/watch?v=u21S_vq5CTw"
     end
 
     test "create_video/1 with invalid data returns error changeset" do
