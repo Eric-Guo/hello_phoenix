@@ -7,6 +7,7 @@ defmodule Hello.User do
     field :password_hash, :string
     field :password, :string, virtual: true
     field :username, :string
+    has_many :videos, Hello.Theater.Video
 
     timestamps()
   end

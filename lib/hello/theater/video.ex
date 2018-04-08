@@ -1,4 +1,8 @@
 defmodule Hello.Theater.Video do
+  @moduledoc """
+  The Theater Video model.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -8,7 +12,7 @@ defmodule Hello.Theater.Video do
     field :title, :string
     field :url, :string
     field :view_count, :integer, default: 0
-    field :user_id, :id
+    belongs_to :user, Hello.User
 
     timestamps()
   end
