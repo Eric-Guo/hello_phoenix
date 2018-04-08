@@ -30,7 +30,7 @@ defmodule Hello.Theater do
     Repo.delete(video)
   end
 
-  def change_video(%Video{} = video) do
+  def change_video(user, %Video{} = video) do
     Video.changeset(video, %{})
   end
 end

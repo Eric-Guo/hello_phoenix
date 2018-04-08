@@ -61,9 +61,9 @@ defmodule Hello.TheaterTest do
       assert_raise Ecto.NoResultsError, fn -> Theater.get_video!(video.id) end
     end
 
-    test "change_video/1 returns a video changeset" do
+    test "change_video/2 returns a video changeset" do
       video = video_fixture()
-      assert %Ecto.Changeset{} = Theater.change_video(video)
+      assert %Ecto.Changeset{} = Theater.change_video(nil, video)
     end
   end
 end

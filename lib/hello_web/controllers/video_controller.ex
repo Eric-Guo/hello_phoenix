@@ -12,7 +12,7 @@ defmodule HelloWeb.VideoController do
   end
 
   def new(conn, _params, user) do
-    changeset = Theater.change_video(%Video{})
+    changeset = Theater.change_video(user, %Video{})
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -34,7 +34,7 @@ defmodule HelloWeb.VideoController do
 
   def edit(conn, %{"id" => id}, user) do
     video = Theater.get_video!(id)
-    changeset = Theater.change_video(video)
+    changeset = Theater.change_video(user, video)
     render(conn, "edit.html", video: video, changeset: changeset)
   end
 
