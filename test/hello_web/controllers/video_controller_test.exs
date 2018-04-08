@@ -12,6 +12,12 @@ defmodule HelloWeb.VideoControllerTest do
     video
   end
 
+  setup do
+    user = Hello.TestHelpers.insert_user(username: "max")
+    conn = assign(build_conn(), :current_user, user)
+    {:ok, conn: conn, user: user}
+  end
+
   describe "index" do
     test "lists all videos", %{conn: conn} do
       conn = get conn, Routes.video_path(conn, :index)
