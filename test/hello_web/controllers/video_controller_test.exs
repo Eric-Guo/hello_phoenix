@@ -2,6 +2,7 @@ defmodule HelloWeb.VideoControllerTest do
   use HelloWeb.ConnCase
 
   alias Hello.Theater
+  import Hello.TestHelpers
 
   @create_attrs %{description: "some description", title: "some title", url: "some url"}
   @update_attrs %{description: "some updated description", title: "some updated title", url: "some updated url"}
@@ -13,7 +14,7 @@ defmodule HelloWeb.VideoControllerTest do
   end
 
   setup do
-    user = Hello.TestHelpers.insert_user(username: "max")
+    user = insert_user(username: "max")
     conn = assign(build_conn(), :current_user, user)
     {:ok, conn: conn, user: user}
   end
