@@ -14,7 +14,7 @@ defmodule HelloWeb.VideoControllerTest do
   end
 
   setup do
-    user = insert_user(username: "max")
+    user = insert_user(%{username: "max"})
     conn = assign(build_conn(), :current_user, user)
     {:ok, conn: conn, user: user}
   end
