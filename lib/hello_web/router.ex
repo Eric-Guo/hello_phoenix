@@ -29,7 +29,7 @@ defmodule HelloWeb.Router do
   #   pipe_through :api
   # end
 
-  scope "/manage", HelloWeb do
+  scope "/manage", HelloWeb, as: :manage do
     pipe_through [:browser, :authenticate_user]
     resources "/videos", VideoController
   end
