@@ -17,7 +17,6 @@ defmodule HelloWeb.Router do
   scope "/", HelloWeb do
     pipe_through [:browser]
 
-    resources "/videos", VideoController
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/hello/:name", HelloController, :world
@@ -29,7 +28,7 @@ defmodule HelloWeb.Router do
   #   pipe_through :api
   # end
 
-  scope "/manage", HelloWeb, as: :manage do
+  scope "/manage", HelloWeb do
     pipe_through [:browser, :authenticate_user]
     resources "/videos", VideoController
   end

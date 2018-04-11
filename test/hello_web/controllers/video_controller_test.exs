@@ -35,11 +35,13 @@ defmodule HelloWeb.VideoControllerTest do
 
   describe "create video" do
     test "redirects to show when data is valid", %{conn: conn} do
+      user = conn.assigns.current_user
       conn = post conn, Routes.video_path(conn, :create), video: @create_attrs
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.video_path(conn, :show, id)
 
+      conn = assign(build_conn(), :current_user, user)
       conn = get conn, Routes.video_path(conn, :show, id)
       assert html_response(conn, 200) =~ "Show Video"
     end
@@ -63,9 +65,11 @@ defmodule HelloWeb.VideoControllerTest do
     setup [:create_video]
 
     test "redirects when data is valid", %{conn: conn, video: video} do
+      user = conn.assigns.current_user
       conn = put conn, Routes.video_path(conn, :update, video), video: @update_attrs
       assert redirected_to(conn) == Routes.video_path(conn, :show, video)
 
+      conn = assign(build_conn(), :current_user, user)
       conn = get conn, Routes.video_path(conn, :show, video)
       assert html_response(conn, 200) =~ "some updated description"
     end
@@ -80,9 +84,11 @@ defmodule HelloWeb.VideoControllerTest do
     setup [:create_video]
 
     test "deletes chosen video", %{conn: conn, video: video} do
+      user = conn.assigns.current_user
       conn = delete conn, Routes.video_path(conn, :delete, video)
       assert redirected_to(conn) == Routes.video_path(conn, :index)
       assert_error_sent 404, fn ->
+        conn = assign(build_conn(), :current_user, user)
         get conn, Routes.video_path(conn, :show, video)
       end
     end
