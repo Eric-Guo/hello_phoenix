@@ -33,6 +33,7 @@ defmodule Hello.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      # Must at https://github.com/Eric-Guo/phoenix/tree/before_cowboy2
       {:phoenix, path: "../oss/phoenix", override: true},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
